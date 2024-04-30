@@ -1,6 +1,8 @@
 package io.github.gldiazcardenas.dropwizard;
 
+import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
 import io.dropwizard.configuration.ResourceConfigurationSourceProvider;
+import io.dropwizard.configuration.SubstitutingSourceProvider;
 import io.github.gldiazcardenas.dropwizard.health.HelloWorldHealthCheck;
 import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Bootstrap;
@@ -20,8 +22,13 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
 
     @Override
     public void initialize(Bootstrap<HelloWorldConfiguration> bootstrap) {
-        // Uses the configuration file from resources folder
+        // Uses the file from resources folder
         bootstrap.setConfigurationSourceProvider(new ResourceConfigurationSourceProvider());
+
+        // Enable variable substitution with environment variables
+        bootstrap.setConfigurationSourceProvider(
+            new SubstitutingSourceProvider(bootstrap.getConfigurationSourceProvider(),
+                new EnvironmentVariableSubstitutor(false, true)));
 
         // Adds Guice DI support
         bootstrap.addBundle(GuiceBundle.builder().modules(new HelloWorldModule()).build());
