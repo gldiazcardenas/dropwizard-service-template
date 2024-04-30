@@ -1,0 +1,32 @@
+greetingTemplate: Hello, %s!
+defaultVisitorName: Stranger
+
+server:
+  applicationConnectors:
+    - type: http
+      port: 8080
+
+  adminConnectors:
+    - type: http
+      port: 8081
+
+logging:
+  level: INFO
+
+  loggers:
+    io.github.gldiazcardenas.dropwizard: INFO
+
+  appenders:
+    - type: console
+      threshold: ALL
+      logFormat: "####%d{yyyy-MM-dd HH:mm:ss.SSS} %level %thread %logger{36}  %msg %X{}%n"
+      timeZone: UTC
+
+    - type: file
+      threshold: TRACE
+      logFormat: "####%d{yyyy-MM-dd HH:mm:ss.SSS} %level %thread %logger{36}  %msg %X{}%n"
+      currentLogFilename: /tmp/application.log
+      archivedLogFilenamePattern: /tmp/application-%d{yyyy-MM-dd}-%i.log.gz
+      archivedFileCount: 7
+      timeZone: UTC
+      maxFileSize: 10MiB
