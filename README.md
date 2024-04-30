@@ -6,3 +6,7 @@ Template to start building a Dropwizard service, this includes some features by 
 - Health Check
 - Checkstyle for code style
 - FAT Jar creation
+- Testing
+- - Integration Tests
+- - Unit Tests
+- - Mocks with Mockito

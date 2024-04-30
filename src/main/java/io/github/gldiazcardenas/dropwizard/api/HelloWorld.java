@@ -1,4 +1,4 @@
-package io.github.gldiazcardenas.dropwizard.model;
+package io.github.gldiazcardenas.dropwizard.api;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
